@@ -1,17 +1,22 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+
+import { PlaceholderPage } from "@/components/compass";
+import { fr } from "@/copy/fr";
 
 export const Route = createFileRoute("/")({
-  beforeLoad: () => {
-    throw redirect({ to: "/kit" });
-  },
   head: () => ({
     meta: [
-      { title: "Compass — Fondations" },
-      { name: "description", content: "Fondations visuelles de Compass, contexte commercial parisien issu de données publiques." },
-      { property: "og:title", content: "Compass — Fondations" },
-      { property: "og:description", content: "Fondations visuelles de Compass, contexte commercial parisien issu de données publiques." },
+      { title: "Avant de signer un bail, lisez la rue — Compass" },
+      { name: "description", content: "Compass lit le contexte d’une adresse commerciale parisienne à partir de données publiques." },
+      { property: "og:title", content: "Avant de signer un bail, lisez la rue — Compass" },
+      { property: "og:description", content: "Compass lit le contexte d’une adresse commerciale parisienne à partir de données publiques." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  component: HomePage,
 });
+
+function HomePage() {
+  return <PlaceholderPage {...fr.pages.home} />;
+}
