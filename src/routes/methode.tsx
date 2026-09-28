@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PlaceholderPage } from "@/components/compass";
-import { fr } from "@/copy/fr";
+import { MethodPage } from "@/components/compass";
 
 export const Route = createFileRoute("/methode")({
   head: () => ({ meta: [
@@ -12,5 +11,5 @@ export const Route = createFileRoute("/methode")({
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
-  component: () => <PlaceholderPage {...fr.pages.method} />,
+  component: MethodPage,
 });
