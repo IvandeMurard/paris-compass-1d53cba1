@@ -32,7 +32,7 @@ function MethodSection({ id, number, title, lead, children }: { id: string; numb
   );
 }
 
-function KeyValues({ values }: { values: Record<string, string | number> }) {
+function KeyValues({ values }: { values: Record<string, string | number | null | undefined> }) {
   return (
     <dl className="grid gap-x-6 gap-y-2 font-mono text-xs leading-5 text-ink-2 sm:grid-cols-2">
       {Object.entries(values).map(([key, value]) => (
