@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep TanStack Router as the sole router because the TanStack Start runtime and generated route tree depend on it.
+- Read all displayed Compass data through `src/data/fixture.ts` because the local fixture is the sole product data source.
