@@ -68,12 +68,12 @@ function DerivationDisclosure({ figure }: { figure: FigureRow }) {
 
 function DataFigure({ figure }: { figure: FigureRow }) {
   if (figure.value === null && "missingReason" in figure) {
-    return <MissingFigure label={figure.label} scale={figure.scale} reason={figure.missingReason} source={figure.source} licence={figure.licence} asOf={figure.asOf} />;
+    return <div><MissingFigure label={figure.label} scale={figure.scale} reason={figure.missingReason} description={figure.counts} source={figure.source} licence={figure.licence} asOf={figure.asOf} /><DerivationDisclosure figure={figure} /></div>;
   }
   if (figure.value === null) return null;
   return (
     <div>
-      <Figure label={figure.label} value={figure.value} scale={figure.scale} source={figure.source} licence={figure.licence} asOf={figure.asOf} method={figure.method as FigureMethod} note={"note" in figure ? figure.note : undefined} />
+      <Figure label={figure.label} value={figure.value} scale={figure.scale} description={figure.counts} source={figure.source} licence={figure.licence} asOf={figure.asOf} method={figure.method as FigureMethod} note={"note" in figure ? figure.note : undefined} />
       <DerivationDisclosure figure={figure} />
     </div>
   );
@@ -192,8 +192,10 @@ export function AddressSheet({ address }: { address: AddressFixture }) {
                   [fr.addressSheet.sign, address.unit.sign_name],
                   [fr.addressSheet.size, address.unit.size_label],
                   [fr.addressSheet.situation, address.unit.situation_label],
-                  [fr.addressSheet.terrace, address.unit.terrasse_permanente || address.unit.terrasse_estivale ? fr.addressSheet.yes : fr.addressSheet.no],
+                  [fr.addressSheet.terrace, address.unit.terrasse_permanente || address.unit.terrasse_estivale || address.unit.terrasse_etalage ? fr.addressSheet.yes : fr.addressSheet.no],
                   [fr.addressSheet.protected, address.unit.plu_protected ? fr.addressSheet.yes : fr.addressSheet.no],
+                  [fr.addressSheet.station, address.unit.idfm_station_name ? `${address.unit.idfm_station_name} · ${formatDistance(address.unit.idfm_station_distance_m)}` : null],
+                  ...(address.unit.chantier_exposed ? [["Chantier signalé", address.unit.chantier_objet ?? address.unit.chantier_description]] : []),
                 ].map(([label, value]) => <div key={label} className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 py-3"><dt className="font-semibold text-ink">{label}</dt><dd className="text-ink-2">{value ?? fr.addressSheet.unavailable}</dd></div>)}
               </dl>
               <p className="mt-3 text-xs leading-5 text-ink-2">{fr.addressSheet.protectedCaveat}</p>
