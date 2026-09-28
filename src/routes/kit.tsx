@@ -95,7 +95,7 @@ function KitPage() {
                     method="derived"
                   />
                 ) : null}
-                {passage?.value !== null && passage?.value !== undefined ? (
+                {passage?.value !== null && passage?.value !== undefined && passage.note ? (
                   <Figure
                     label={passage.label}
                     value={passage.value}
