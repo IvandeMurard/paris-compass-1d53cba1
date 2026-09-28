@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 
 import {
   ConfidenceMark,
@@ -38,6 +39,9 @@ function KitPage() {
   const passage = batignolles.dossier.figures.find((figure) => figure.axis === "footfall");
   const noise = legendre.dossier.figures.find((figure) => figure.axis === "noise");
   const jamais = shared.jamais.rows[0];
+  const jamaisAlternative = jamais?.topic === "Passage piéton"
+    ? fr.never.actions["Passage piéton"]
+    : fr.never.actions["Loyer commercial"];
 
   return (
     <main className="min-h-screen bg-ground px-4 py-10 text-ink sm:px-8 sm:py-16">
@@ -138,7 +142,7 @@ function KitPage() {
                 <JamaisBlock
                   topic={jamais.topic}
                   text={jamais.text}
-                  alternative={fr.never.actions[jamais.topic]}
+                  alternative={jamaisAlternative}
                 />
               ) : null}
             </KitSection>
@@ -149,7 +153,7 @@ function KitPage() {
   );
 }
 
-function KitSection({ number, title, children }: { number: string; title: string; children: React.ReactNode }) {
+function KitSection({ number, title, children }: { number: string; title: string; children: ReactNode }) {
   return (
     <section className="px-5 py-9 sm:px-8 sm:py-12">
       <div className="mb-7 flex items-baseline gap-4 border-b border-rule pb-3">
