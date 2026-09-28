@@ -21,8 +21,8 @@ type LeafletAddressMapProps = {
 
 export function LeafletAddressMap({ address, view, compact }: LeafletAddressMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<LeafletMap>();
-  const unitMarkerRef = useRef<Marker>();
+  const mapRef = useRef<LeafletMap | null>(null);
+  const unitMarkerRef = useRef<Marker | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -69,9 +69,9 @@ export function LeafletAddressMap({ address, view, compact }: LeafletAddressMapP
 
     return () => {
       cancelled = true;
-      unitMarkerRef.current = undefined;
+      unitMarkerRef.current = null;
       if (localMap) localMap.remove();
-      if (mapRef.current === localMap) mapRef.current = undefined;
+      if (mapRef.current === localMap) mapRef.current = null;
     };
   }, [address]);
 

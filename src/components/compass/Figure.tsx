@@ -8,7 +8,7 @@ type FigureProps = SourceLineProps & {
   value: string | number;
   scale: string;
   method: FigureMethod;
-  note?: string;
+  note?: string | undefined;
 };
 
 export function Figure({ label, value, scale, source, licence, asOf, method, note }: FigureProps) {

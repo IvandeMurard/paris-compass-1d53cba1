@@ -28,6 +28,7 @@ const formatDate = (value: string) => new Intl.DateTimeFormat("fr-FR", { dateSty
 const formatDistance = (value: number) => `${Math.round(value)} m`;
 const formatMoney = (value: number) => new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(value);
 const entries = (value: object) => Object.entries(value).map(([key, item]) => `${key} = ${String(item)}`).join(" · ");
+const neverAction = (topic: string) => topic === "Loyer commercial" ? fr.never.actions["Loyer commercial"] : fr.never.actions["Passage piéton"];
 
 function Chapter({ id, number, title, onVisible, children }: { id: ChapterId; number: string; title: string; onVisible: (id: ChapterId) => void; children: React.ReactNode }) {
   const ref = useRef<HTMLElement>(null);
@@ -226,7 +227,7 @@ export function AddressSheet({ address }: { address: AddressFixture }) {
 
           <Chapter id="around" number="05" title={fr.addressSheet.chapters.around} onVisible={setActiveChapter}>
             <div className="grid gap-10">{surroundingFigures.map((figure) => <DataFigure key={figure.axis} figure={figure} />)}</div>
-            <div className="mt-14"><h3 className="mb-6 font-display text-3xl text-ink">{fr.addressSheet.limits}</h3><div className="grid gap-8">{shared.jamais.rows.map((row) => <JamaisBlock key={row.topic} topic={row.topic} text={row.text} alternative={fr.never.actions[row.topic]} />)}</div></div>
+            <div className="mt-14"><h3 className="mb-6 font-display text-3xl text-ink">{fr.addressSheet.limits}</h3><div className="grid gap-8">{shared.jamais.rows.map((row) => <JamaisBlock key={row.topic} topic={row.topic} text={row.text} alternative={neverAction(row.topic)} />)}</div></div>
           </Chapter>
         </> : (
           <div className="min-h-[24rem] border-t-2 border-ink px-4 py-10 sm:px-8"><p className="font-display text-2xl leading-8 text-ink">{selectedCandidate?.sign_name ?? selectedCandidate?.activity_label}</p><p className="mt-4 text-sm leading-6 text-ink-2">{fr.addressSheet.unavailableShopfront}</p></div>

@@ -1,7 +1,7 @@
 export type SourceLineProps = {
   source: string;
   licence: string;
-  asOf?: string;
+  asOf?: string | undefined;
 };
 
 export function SourceLine({ source, licence, asOf }: SourceLineProps) {
