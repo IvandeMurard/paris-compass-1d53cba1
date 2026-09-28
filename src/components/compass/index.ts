@@ -1,5 +1,6 @@
 export { AppHeader } from "./AppHeader";
 export { AppShell } from "./AppShell";
+export { AddressSheet } from "./AddressSheet";
 export { ConfidenceMark, type Confidence } from "./ConfidenceMark";
 export { Figure, type FigureMethod } from "./Figure";
 export { JamaisBlock } from "./JamaisBlock";

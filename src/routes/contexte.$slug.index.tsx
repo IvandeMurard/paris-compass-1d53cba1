@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PlaceholderPage } from "@/components/compass";
+import { AddressSheet } from "@/components/compass";
 import { fr } from "@/copy/fr";
 import { getAddress } from "@/data/fixture";
 
@@ -23,5 +23,5 @@ function ContextPage() {
   const { slug } = Route.useParams();
   const address = getAddress(slug);
   if (!address) return null;
-  return <PlaceholderPage {...fr.pages.context} address={address.address.label} sheet />;
+  return <AddressSheet address={address} />;
 }
