@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApprendreRouteImport } from './routes/apprendre'
 import { Route as KitRouteImport } from './routes/kit'
+import { Route as MethodeRouteImport } from './routes/methode'
+import { Route as ContexteSlugRouteImport } from './routes/contexte.$slug'
+import { Route as VerifierDemoRouteImport } from './routes/verifier.demo'
+import { Route as ContexteSlugIndexRouteImport } from './routes/contexte.$slug.index'
+import { Route as ContexteSlugDossierRouteImport } from './routes/contexte.$slug.dossier'
+import { Route as ContexteSlugVisiteRouteImport } from './routes/contexte.$slug.visite'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApprendreRoute = ApprendreRouteImport.update({
+  id: '/apprendre',
+  path: '/apprendre',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KitRoute = KitRouteImport.update({
@@ -22,31 +34,112 @@ const KitRoute = KitRouteImport.update({
   path: '/kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MethodeRoute = MethodeRouteImport.update({
+  id: '/methode',
+  path: '/methode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContexteSlugRoute = ContexteSlugRouteImport.update({
+  id: '/contexte/$slug',
+  path: '/contexte/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifierDemoRoute = VerifierDemoRouteImport.update({
+  id: '/verifier/demo',
+  path: '/verifier/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContexteSlugIndexRoute = ContexteSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ContexteSlugRoute,
+} as any)
+const ContexteSlugDossierRoute = ContexteSlugDossierRouteImport.update({
+  id: '/dossier',
+  path: '/dossier',
+  getParentRoute: () => ContexteSlugRoute,
+} as any)
+const ContexteSlugVisiteRoute = ContexteSlugVisiteRouteImport.update({
+  id: '/visite',
+  path: '/visite',
+  getParentRoute: () => ContexteSlugRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apprendre': typeof ApprendreRoute
   '/kit': typeof KitRoute
+  '/methode': typeof MethodeRoute
+  '/contexte/$slug': typeof ContexteSlugRouteWithChildren
+  '/verifier/demo': typeof VerifierDemoRoute
+  '/contexte/$slug/dossier': typeof ContexteSlugDossierRoute
+  '/contexte/$slug/visite': typeof ContexteSlugVisiteRoute
+  '/contexte/$slug/': typeof ContexteSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apprendre': typeof ApprendreRoute
   '/kit': typeof KitRoute
+  '/methode': typeof MethodeRoute
+  '/verifier/demo': typeof VerifierDemoRoute
+  '/contexte/$slug/dossier': typeof ContexteSlugDossierRoute
+  '/contexte/$slug/visite': typeof ContexteSlugVisiteRoute
+  '/contexte/$slug': typeof ContexteSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apprendre': typeof ApprendreRoute
   '/kit': typeof KitRoute
+  '/methode': typeof MethodeRoute
+  '/contexte/$slug': typeof ContexteSlugRouteWithChildren
+  '/verifier/demo': typeof VerifierDemoRoute
+  '/contexte/$slug/dossier': typeof ContexteSlugDossierRoute
+  '/contexte/$slug/visite': typeof ContexteSlugVisiteRoute
+  '/contexte/$slug/': typeof ContexteSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kit'
+  fullPaths:
+    | '/'
+    | '/apprendre'
+    | '/kit'
+    | '/methode'
+    | '/contexte/$slug'
+    | '/verifier/demo'
+    | '/contexte/$slug/dossier'
+    | '/contexte/$slug/visite'
+    | '/contexte/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kit'
-  id: '__root__' | '/' | '/kit'
+  to:
+    | '/'
+    | '/apprendre'
+    | '/kit'
+    | '/methode'
+    | '/verifier/demo'
+    | '/contexte/$slug/dossier'
+    | '/contexte/$slug/visite'
+    | '/contexte/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/apprendre'
+    | '/kit'
+    | '/methode'
+    | '/contexte/$slug'
+    | '/verifier/demo'
+    | '/contexte/$slug/dossier'
+    | '/contexte/$slug/visite'
+    | '/contexte/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApprendreRoute: typeof ApprendreRoute
   KitRoute: typeof KitRoute
+  MethodeRoute: typeof MethodeRoute
+  ContexteSlugRoute: typeof ContexteSlugRouteWithChildren
+  VerifierDemoRoute: typeof VerifierDemoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apprendre': {
+      id: '/apprendre'
+      path: '/apprendre'
+      fullPath: '/apprendre'
+      preLoaderRoute: typeof ApprendreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kit': {
       id: '/kit'
       path: '/kit'
@@ -65,12 +165,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/methode': {
+      id: '/methode'
+      path: '/methode'
+      fullPath: '/methode'
+      preLoaderRoute: typeof MethodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contexte/$slug': {
+      id: '/contexte/$slug'
+      path: '/contexte/$slug'
+      fullPath: '/contexte/$slug'
+      preLoaderRoute: typeof ContexteSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verifier/demo': {
+      id: '/verifier/demo'
+      path: '/verifier/demo'
+      fullPath: '/verifier/demo'
+      preLoaderRoute: typeof VerifierDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contexte/$slug/': {
+      id: '/contexte/$slug/'
+      path: '/'
+      fullPath: '/contexte/$slug/'
+      preLoaderRoute: typeof ContexteSlugIndexRouteImport
+      parentRoute: typeof ContexteSlugRoute
+    }
+    '/contexte/$slug/dossier': {
+      id: '/contexte/$slug/dossier'
+      path: '/dossier'
+      fullPath: '/contexte/$slug/dossier'
+      preLoaderRoute: typeof ContexteSlugDossierRouteImport
+      parentRoute: typeof ContexteSlugRoute
+    }
+    '/contexte/$slug/visite': {
+      id: '/contexte/$slug/visite'
+      path: '/visite'
+      fullPath: '/contexte/$slug/visite'
+      preLoaderRoute: typeof ContexteSlugVisiteRouteImport
+      parentRoute: typeof ContexteSlugRoute
+    }
   }
 }
 
+interface ContexteSlugRouteChildren {
+  ContexteSlugDossierRoute: typeof ContexteSlugDossierRoute
+  ContexteSlugVisiteRoute: typeof ContexteSlugVisiteRoute
+  ContexteSlugIndexRoute: typeof ContexteSlugIndexRoute
+}
+
+const ContexteSlugRouteChildren: ContexteSlugRouteChildren = {
+  ContexteSlugDossierRoute: ContexteSlugDossierRoute,
+  ContexteSlugVisiteRoute: ContexteSlugVisiteRoute,
+  ContexteSlugIndexRoute: ContexteSlugIndexRoute,
+}
+
+const ContexteSlugRouteWithChildren = ContexteSlugRoute._addFileChildren(
+  ContexteSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApprendreRoute: ApprendreRoute,
   KitRoute: KitRoute,
+  MethodeRoute: MethodeRoute,
+  ContexteSlugRoute: ContexteSlugRouteWithChildren,
+  VerifierDemoRoute: VerifierDemoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
