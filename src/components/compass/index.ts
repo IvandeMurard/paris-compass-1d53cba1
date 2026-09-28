@@ -1,6 +1,10 @@
+export { AppHeader } from "./AppHeader";
+export { AppShell } from "./AppShell";
 export { ConfidenceMark, type Confidence } from "./ConfidenceMark";
 export { Figure, type FigureMethod } from "./Figure";
 export { JamaisBlock } from "./JamaisBlock";
 export { MissingFigure } from "./MissingFigure";
+export { PlaceholderPage } from "./PlaceholderPage";
 export { RetenuBlock } from "./RetenuBlock";
+export { SiteFooter } from "./SiteFooter";
 export { SourceLine, type SourceLineProps } from "./SourceLine";

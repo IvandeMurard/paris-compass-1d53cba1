@@ -11,3 +11,4 @@
 
 - Keep TanStack Router as the sole router because the TanStack Start runtime and generated route tree depend on it.
 - Read all displayed Compass data through `src/data/fixture.ts` because the local fixture is the sole product data source.
+- Keep shared navigation and footer framing in `src/components/compass/AppShell.tsx` so every page uses one consistent shell.
