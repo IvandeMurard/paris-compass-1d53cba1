@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @theme inline {
   --color-paper: var(--paper);
@@ -53,4 +54,57 @@
     font-size: 14px;
     line-height: 1.5;
   }
+
+  button,
+  summary,
+  input,
+  label,
+  a {
+    letter-spacing: 0;
+  }
+}
+
+.compass-map {
+  background-color: var(--field);
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.compass-map .leaflet-control-zoom a {
+  border-radius: 0;
+  background: var(--document);
+  color: var(--ink);
+}
+
+.compass-map .leaflet-control-attribution {
+  background: var(--document);
+  color: var(--ink-2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+}
+
+.compass-map-marker {
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  filter:
+    drop-shadow(1px 0 0 var(--document))
+    drop-shadow(-1px 0 0 var(--document))
+    drop-shadow(0 1px 0 var(--document))
+    drop-shadow(0 -1px 0 var(--document));
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.compass-map-marker--unit {
+  color: var(--confidence);
+  font-size: 24px;
+}
+
+.compass-map-marker--signal {
+  font-size: 20px;
 }

@@ -8,10 +8,11 @@ type FigureProps = SourceLineProps & {
   value: string | number;
   scale: string;
   method: FigureMethod;
-  note?: string;
+  note?: string | undefined;
+  description?: string | undefined;
 };
 
-export function Figure({ label, value, scale, source, licence, asOf, method, note }: FigureProps) {
+export function Figure({ label, value, scale, source, licence, asOf, method, note, description }: FigureProps) {
   return (
     <figure className="border-t-2 border-ink pt-4">
       <figcaption className="text-sm font-semibold text-ink-2">{label}</figcaption>
@@ -19,6 +20,7 @@ export function Figure({ label, value, scale, source, licence, asOf, method, not
         <span className="font-display text-6xl leading-none text-ink">{value}</span>
         <span className="pb-1 font-mono text-xs text-ink-2">{scale}</span>
       </div>
+      {description ? <p className="mt-3 text-sm leading-6 text-ink-2">{description}</p> : null}
       <p className="mt-3 font-mono text-xs text-ink-2">méthode · {fr.figure.methods[method]}</p>
       {method === "estimated" && note ? (
         <p className="mt-3 font-display text-base leading-6 text-ink-2">{note}</p>
