@@ -4,6 +4,7 @@ export { AddressSheet } from "./AddressSheet";
 export { ConfidenceMark, type Confidence } from "./ConfidenceMark";
 export { Figure, type FigureMethod } from "./Figure";
 export { JamaisBlock } from "./JamaisBlock";
+export { LearnPage } from "./LearnPage";
 export { MissingFigure } from "./MissingFigure";
 export { MethodPage } from "./MethodPage";
 export { PlaceholderPage } from "./PlaceholderPage";
