@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PlaceholderPage } from "@/components/compass";
-import { fr } from "@/copy/fr";
+import { HomePage } from "@/components/compass";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,6 +16,3 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-function HomePage() {
-  return <PlaceholderPage {...fr.pages.home} />;
-}

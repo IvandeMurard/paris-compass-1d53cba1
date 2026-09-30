@@ -3,6 +3,7 @@ export { AppShell } from "./AppShell";
 export { AddressSheet } from "./AddressSheet";
 export { ConfidenceMark, type Confidence } from "./ConfidenceMark";
 export { Figure, type FigureMethod } from "./Figure";
+export { HomePage } from "./HomePage";
 export { JamaisBlock } from "./JamaisBlock";
 export { LearnPage } from "./LearnPage";
 export { MissingFigure } from "./MissingFigure";
