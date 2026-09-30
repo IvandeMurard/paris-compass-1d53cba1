@@ -70,7 +70,8 @@ export function HomePage() {
   const submitSearch = (event: FormEvent) => {
     event.preventDefault();
     setSubmittedQuery(query);
-    if (matches.length === 1) chooseAddress(matches[0][0]);
+    const onlyMatch = matches.length === 1 ? matches[0] : undefined;
+    if (onlyMatch) chooseAddress(onlyMatch[0]);
     else setSelectedSlug(null);
   };
 

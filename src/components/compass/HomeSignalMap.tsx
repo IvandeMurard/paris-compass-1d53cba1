@@ -16,16 +16,17 @@ export function HomeSignalMap({ address, signals }: { address: AddressFixture; s
     void import("leaflet").then((leafletModule) => {
       if (cancelled || !containerRef.current) return;
       const L = leafletModule.default;
-      map = L.map(containerRef.current, {
+      const localMap = L.map(containerRef.current, {
         zoomControl: true,
         attributionControl: true,
         preferCanvas: true,
       }).setView([address.unit.lat, address.unit.lng], 15.5);
-      map.attributionControl.setPrefix(false);
+      map = localMap;
+      localMap.attributionControl.setPrefix(false);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 19,
-      }).addTo(map);
+      }).addTo(localMap);
 
       const marker = (symbol: string, className: string) => L.divIcon({
         className: `compass-map-marker ${className}`,
@@ -38,14 +39,14 @@ export function HomeSignalMap({ address, signals }: { address: AddressFixture; s
         icon: marker("●", "compass-map-marker--unit"),
         title: address.address.label,
         zIndexOffset: 1000,
-      }).addTo(map).bindTooltip(address.address.label, { direction: "top" });
+      }).addTo(localMap).bindTooltip(address.address.label, { direction: "top" });
 
       signals.forEach((signal) => {
         if (!signal.mapPoint) return;
         L.marker([signal.mapPoint.lat, signal.mapPoint.lng], {
           icon: marker("◆", "compass-map-marker--signal"),
           title: signal.address,
-        }).addTo(map).bindTooltip(`${signal.address} · ${signal.published_on}`, { direction: "top" });
+        }).addTo(localMap).bindTooltip(`${signal.address} · ${signal.published_on}`, { direction: "top" });
       });
     });
 
