@@ -196,7 +196,7 @@ export function AddressSheet({ address }: { address: AddressFixture }) {
                   [fr.addressSheet.protected, address.unit.plu_protected ? fr.addressSheet.yes : fr.addressSheet.no],
                   [fr.addressSheet.station, address.unit.idfm_station_name ? `${address.unit.idfm_station_name} · ${formatDistance(address.unit.idfm_station_distance_m)}` : null],
                   ...(address.unit.chantier_exposed ? [["Chantier signalé", address.unit.chantier_objet ?? address.unit.chantier_description]] : []),
-                ].map(([label, value]) => <div key={label} className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 py-3"><dt className="font-semibold text-ink">{label}</dt><dd className="text-ink-2">{value ?? fr.addressSheet.unavailable}</dd></div>)}
+                ].map(([label, value]) => <div key={label} className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 py-3"><dt className="min-w-0 break-words font-semibold text-ink">{label}</dt><dd className="min-w-0 break-words text-ink-2">{value ?? fr.addressSheet.unavailable}</dd></div>)}
               </dl>
               <p className="mt-3 text-xs leading-5 text-ink-2">{fr.addressSheet.protectedCaveat}</p>
               {vintage2023 ? <div className="mt-4"><SourceLine source="APUR BDCom 2023" licence={vintage2023.licence} asOf={vintage2023.as_of} /></div> : null}

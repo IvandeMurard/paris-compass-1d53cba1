@@ -73,9 +73,15 @@
 }
 
 .compass-map .leaflet-control-zoom a {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
   border-radius: 0;
   background: var(--document);
   color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
 }
 
 .compass-map .leaflet-control-attribution {
@@ -83,6 +89,12 @@
   color: var(--ink-2);
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
+}
+
+.compass-map .leaflet-control-attribution a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
 }
 
 .compass-map-marker {
