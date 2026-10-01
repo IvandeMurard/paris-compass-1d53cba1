@@ -91,6 +91,12 @@
   font-size: 10px;
 }
 
+.compass-map .leaflet-control-attribution a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
 .compass-map-marker {
   display: grid;
   place-items: center;
