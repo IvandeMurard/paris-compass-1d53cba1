@@ -47,8 +47,8 @@ export function LeafletAddressMap({ address, view, compact }: LeafletAddressMapP
       const icon = (symbol: string, className = "") => L.divIcon({
         className: `compass-map-marker ${className}`,
         html: `<span aria-hidden="true">${symbol}</span>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 12],
+        iconSize: [44, 44],
+        iconAnchor: [22, 22],
       });
 
       address.premises400m.rows.forEach((premise) => {

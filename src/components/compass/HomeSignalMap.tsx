@@ -31,8 +31,8 @@ export function HomeSignalMap({ address, signals }: { address: AddressFixture; s
       const marker = (symbol: string, className: string) => L.divIcon({
         className: `compass-map-marker ${className}`,
         html: `<span aria-hidden="true">${symbol}</span>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 12],
+        iconSize: [44, 44],
+        iconAnchor: [22, 22],
       });
 
       L.marker([address.unit.lat, address.unit.lng], {
