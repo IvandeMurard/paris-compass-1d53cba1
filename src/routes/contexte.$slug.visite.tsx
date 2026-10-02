@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { VisitPage } from "@/components/compass/VisitPage";
+import { VisitPage as VisitView } from "@/components/compass/VisitPage";
 import { fr } from "@/copy/fr";
 import { getAddress } from "@/data/fixture";
 
@@ -14,12 +14,12 @@ export const Route = createFileRoute("/contexte/$slug/visite")({
       { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
     ] };
   },
-  component: VisitPage,
+  component: VisitRoute,
 });
 
-function VisitPage() {
+function VisitRoute() {
   const { slug } = Route.useParams();
   const address = getAddress(slug);
   if (!address) return null;
-  return <VisitPage slug={slug} address={address} />;
+  return <VisitView slug={slug} address={address} />;
 }
