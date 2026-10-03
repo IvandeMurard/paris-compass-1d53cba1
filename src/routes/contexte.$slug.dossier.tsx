@@ -16,10 +16,10 @@ export const Route = createFileRoute("/contexte/$slug/dossier")({
       { name: "robots", content: "noindex" },
     ] };
   },
-  component: DossierPage,
+  component: DossierRoute,
 });
 
-function DossierPage() {
+function DossierRoute() {
   const { slug } = Route.useParams();
   const address = getAddress(slug);
   if (!address) return null;

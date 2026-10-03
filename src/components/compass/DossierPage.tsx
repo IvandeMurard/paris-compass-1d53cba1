@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { fr } from "@/copy/fr";
 import type { AddressFixture } from "@/data/fixture";
 import { ConfidenceMark, type Confidence } from "./ConfidenceMark";
+import type { FigureMethod } from "./Figure";
 import { RetenuBlock } from "./RetenuBlock";
 import { SourceLine } from "./SourceLine";
 
@@ -36,7 +37,7 @@ function DossierFigure({ figure }: { figure: FigureRow }) {
       </div>
       {figure.counts ? <p className="mt-3 text-sm leading-6 text-ink-2">{figure.counts}</p> : null}
       {missing && "missingReason" in figure ? <p className="mt-3 text-sm leading-6 text-ink-2">{figure.missingReason}</p> : null}
-      <p className="mt-3 font-mono text-xs text-ink-2">méthode · {fr.figure.methods[figure.method]}</p>
+      <p className="mt-3 font-mono text-xs text-ink-2">méthode · {fr.figure.methods[figure.method as FigureMethod]}</p>
       <div className="mt-3"><SourceLine source={figure.source} licence={figure.licence} asOf={figure.asOf} /></div>
     </article>
   );
