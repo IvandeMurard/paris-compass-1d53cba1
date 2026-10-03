@@ -14,7 +14,7 @@ export function SiteFooter({ variant = "full" }: { variant?: "full" | "sheet" })
   const sourceRows = shared.sourceFreshness.rows;
 
   return (
-    <footer className={variant === "sheet" ? "w-full max-w-[520px] bg-paper lg:border-r lg:border-ink" : "bg-paper"}>
+    <footer className={`compass-site-footer ${variant === "sheet" ? "w-full max-w-[520px] bg-paper lg:border-r lg:border-ink" : "bg-paper"}`}>
       <div className={variant === "full" ? "mx-auto max-w-6xl px-4 sm:px-8" : "px-4 sm:px-8"}>
         <div className="grid gap-8 border-t-2 border-ink py-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:py-10">
           <div className="min-w-0">

@@ -11,7 +11,7 @@ const links = [
 
 export function AppHeader() {
   return (
-    <header className="border-b-2 border-ink bg-paper">
+    <header className="compass-app-header border-b-2 border-ink bg-paper">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 px-4 sm:flex sm:min-h-16 sm:justify-between sm:px-8">
         <Link to="/" className="flex min-h-14 min-w-0 items-center font-display text-2xl leading-none">
           <span className="truncate">{fr.shell.brand}</span>
