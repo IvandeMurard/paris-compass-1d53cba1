@@ -120,3 +120,53 @@
 .compass-map-marker--signal {
   font-size: 20px;
 }
+
+@page {
+  size: A4;
+  margin: 13mm 15mm;
+}
+
+@media print {
+  .compass-app-header,
+  .compass-site-footer,
+  .dossier-toolbar {
+    display: none !important;
+  }
+
+  body,
+  .dossier-screen {
+    background: var(--document) !important;
+  }
+
+  .dossier-screen,
+  .dossier-document {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dossier-document {
+    font-size: 10pt;
+  }
+
+  .dossier-cover {
+    min-height: 235mm;
+  }
+
+  .dossier-section {
+    break-before: page;
+    padding-top: 0;
+  }
+
+  .dossier-keep,
+  figure,
+  aside {
+    break-inside: avoid;
+  }
+
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
