@@ -1,21 +1,26 @@
-# Prompt 7 — Accueil Compass
+# Prompt 10 — Dossier imprimable
 
 ## Résultat
-- Remplacer la page d’attente `/` par l’accueil Compass en français, adapté à la première visite, au retour et au mobile.
-- Garder le fichier local comme unique source pour les quatre adresses et les signaux BODACC.
+- Remplacer l’attente de `/contexte/:slug/dossier` par un document d’étude d’emplacement sobre, sans marque Compass dans le document.
+- Utiliser uniquement `addresses[slug].dossier` et `unitTimeline.rows` depuis le fichier local ; ne créer aucun chiffre ni fait.
+- Conserver l’état d’adresse absente déjà géré par la route parente.
 
-## Expérience
-- Afficher d’abord la phrase « Avant de signer un bail, lisez la rue. » et une recherche par libellé exact ou partiel parmi les quatre adresses.
-- Proposer le métier dans la continuité de la recherche, avec l’option « Juste regarder » ; le choix reste facultatif et ne modifie aucun chiffre.
-- Pour une recherche sans correspondance, afficher « Voir les quatre adresses » et les quatre liens réels, sans géocodage ni suggestion extérieure.
-- Mémoriser localement les adresses consultées et amorcer les récents avec Lobligeois, rue des Moines et rue Legendre pour l’état de retour.
+## Contenu du document
+- Couverture : « Étude d’emplacement », adresse, date d’émission issue de `dossier.issuedAt` et source de l’adresse.
+- Synthèse : phrase `dossier.verdict.sentence`, puis constats de `dossier.figures` avec valeur ou « non mesuré », méthode, source, licence et date.
+- Histoire publiée : `unitTimeline.rows` dans l’ordre chronologique ; prix et niveaux de confiance pour les lignes servies ; composant retenu et phrase `evidence` pour chaque ligne retenue.
+- Rythme : lecture, profil horaire JOHV, note de prudence et provenance depuis `dossier.rythme`.
+- Limites : chaque élément de `dossier.gaps` avec sa raison exacte ; section absente lorsqu’il n’y a aucun élément.
+- Méthode et cadre : textes exacts de `dossier.reproduce.methodology` et `dossier.doctrine`.
+- Ne montrer ni numéro de référence, ni QR code, ni zone de signature.
 
-## Signaux et carte
-- Construire le fil depuis `addresses["82-place-du-docteur-felix-lobligeois"].nearbySignals.rows`, trié du plus récent au plus ancien.
-- Afficher famille, date, distance et adresse, avec l’avertissement siège social lorsque `address_source` vaut `siege_social`.
-- Montrer sur la carte uniquement les signaux dotés d’un `mapPoint`; ne jamais géocoder les autres et ne lire aucun signal Sirene.
+## Présentation et impression
+- Composer un document blanc au format A4, hiérarchie éditoriale neutre, règles fines et mise en page lisible sur écran comme sur papier.
+- Ajouter une commande d’impression hors document ; elle ne figurera pas sur la feuille imprimée.
+- En `@media print`, masquer navigation, pied de page et commandes, retirer les fonds de page inutiles, préserver les couleurs utiles et éviter les coupures dans les constats, sources et blocs retenus.
+- Le document imprimé reste sans marque Compass ; les libellés nécessaires sont centralisés dans la copie française.
 
-## Technique et contrôle
-- Ajouter un composant d’accueil dédié et une carte Leaflet chargée uniquement côté navigateur, en conservant la navigation et le pied de page existants.
-- Centraliser les nouveaux libellés dans la copie française et utiliser les composants de contrôle existants.
-- Vérifier recherche trouvée/inconnue, choix facultatif du métier, récents persistants, ordre du fil, carte, et absence de débordement sur mobile.
+## Contrôles
+- Vérifier les quatre adresses, notamment les lignes retenues 2017/2020 et le bruit « non mesuré » rue Legendre.
+- Vérifier l’aperçu A4, l’absence des éléments interdits, la lisibilité mobile et l’absence de débordement horizontal.
+- Confirmer la compilation et les erreurs d’exécution avant livraison.
