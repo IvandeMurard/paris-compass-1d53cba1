@@ -10,4 +10,4 @@
 - [x] Build the entrepreneur-facing dossier from the local fixture.
 - [x] Include timeline, retained rows, gaps, sources, and methods.
 - [x] Add A4 print styling without branding, reference, QR code, or signature.
-- [ ] Verify all four addresses, mobile layout, printing, and compilation.
+- [x] Verify all four addresses, mobile layout, printing, and compilation.
