@@ -11,3 +11,9 @@
 - [x] Include timeline, retained rows, gaps, sources, and methods.
 - [x] Add A4 print styling without branding, reference, QR code, or signature.
 - [x] Verify all four addresses, mobile layout, printing, and compilation.
+
+# Prompt 11 — Vérification and Retours (mock screens)
+
+- [x] Build /verifier/demo: Compass-branded, mono « maquette — non fonctionnel » banner, file drop zone, static example hash-comparison state, nothing uploaded.
+- [x] Build the Feedback bottom sheet, reachable from the footer, submitting nowhere — confirmation state only.
+- [x] Verify desktop and mobile rendering, overflow, hit targets, and compilation.
