@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { DragEvent } from "react";
+import type { ChangeEvent, DragEvent } from "react";
 
 import { fr } from "@/copy/fr";
 
@@ -13,7 +13,7 @@ export function VerifyPage() {
     if (file) setFileName(file.name);
   };
 
-  const onPick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onPick = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) setFileName(file.name);
   };
