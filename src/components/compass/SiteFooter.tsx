@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 import { fr } from "@/copy/fr";
 import { shared } from "@/data/fixture";
+
+import { FeedbackSheet } from "./FeedbackSheet";
 
 const links = [
   { to: "/", label: fr.shell.home },
@@ -11,6 +14,7 @@ const links = [
 ] as const;
 
 export function SiteFooter({ variant = "full" }: { variant?: "full" | "sheet" }) {
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const sourceRows = shared.sourceFreshness.rows;
 
   return (
@@ -35,10 +39,12 @@ export function SiteFooter({ variant = "full" }: { variant?: "full" | "sheet" })
             ))}
           </p>
         </div>
-        <div className="flex min-h-16 items-center border-t border-ink py-2">
+        <div className="flex min-h-16 flex-wrap items-center gap-x-6 gap-y-1 border-t border-ink py-2">
+          <button type="button" onClick={() => setFeedbackOpen(true)} className="inline-flex min-h-11 items-center text-sm underline decoration-1 underline-offset-4">{fr.shell.feedback}</button>
           <a href="https://github.com/IvandeMurard/paris-compass/issues" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center text-sm underline decoration-1 underline-offset-4">{fr.shell.reportIssue}</a>
         </div>
       </div>
+      <FeedbackSheet open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
     </footer>
   );
 }
