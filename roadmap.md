@@ -17,3 +17,12 @@
 - [x] Build /verifier/demo: Compass-branded, mono « maquette — non fonctionnel » banner, file drop zone, static example hash-comparison state, nothing uploaded.
 - [x] Build the Feedback bottom sheet, reachable from the footer, submitting nowhere — confirmation state only.
 - [x] Verify desktop and mobile rendering, overflow, hit targets, and compilation.
+
+# Phase 1 — Fix list
+
+- [ ] Sanitize Méthode sources and formulas.
+- [ ] Replace screen indexes with raw counts or distances.
+- [ ] Update retained dates and evidence.
+- [ ] Rework Home recents and grouped six-month signal feed.
+- [ ] Replace feedback actions, remove Kit navigation, and simplify footer sources.
+- [ ] Verify requested pages and constraints.
