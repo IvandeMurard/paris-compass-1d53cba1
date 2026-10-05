@@ -6,7 +6,7 @@ export type FigureMethod = keyof typeof fr.figure.methods;
 type FigureProps = SourceLineProps & {
   label: string;
   value: string | number;
-  scale: string;
+  scale?: string | undefined;
   method: FigureMethod;
   note?: string | undefined;
   description?: string | undefined;
@@ -18,7 +18,7 @@ export function Figure({ label, value, scale, source, licence, asOf, method, not
       <figcaption className="text-sm font-semibold text-ink-2">{label}</figcaption>
       <div className="mt-4 flex items-end justify-between gap-4 border-b border-rule pb-4">
         <span className="font-display text-6xl leading-none text-ink">{value}</span>
-        <span className="pb-1 font-mono text-xs text-ink-2">{scale}</span>
+        {scale ? <span className="pb-1 font-mono text-xs text-ink-2">{scale}</span> : null}
       </div>
       {description ? <p className="mt-3 text-sm leading-6 text-ink-2">{description}</p> : null}
       <p className="mt-3 font-mono text-xs text-ink-2">méthode · {fr.figure.methods[method]}</p>

@@ -13,3 +13,4 @@
 - Read all displayed Compass data through `src/data/fixture.ts` because the local fixture is the sole product data source.
 - Keep shared navigation and footer framing in `src/components/compass/AppShell.tsx` so every page uses one consistent shell.
 - Load Leaflet dynamically inside the browser-only map component because its DOM-dependent runtime must not enter server rendering.
+- Derive public figure labels and raw count/distance displays through `src/lib/figure-display.ts` so screen summaries never expose 0–100 indexes.

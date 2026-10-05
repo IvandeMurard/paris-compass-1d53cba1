@@ -58,8 +58,8 @@ export function HomeSignalMap({ address, signals }: { address: AddressFixture; s
 
   return (
     <div className="relative h-full min-h-[300px] overflow-hidden border-y-2 border-ink bg-field lg:min-h-[560px] lg:border-y-0 lg:border-l-2">
-      <div ref={containerRef} className="compass-map h-full w-full" role="img" aria-label={fr.pages.home.map} />
-      <p className="pointer-events-none absolute bottom-4 left-4 z-[500] border border-ink bg-document px-3 py-2 font-mono text-xs text-ink-2">◆ {fr.pages.home.mapLegend}</p>
+      <div ref={containerRef} className="compass-map h-full w-full" role="img" aria-label={`${fr.pages.home.map} ${address.address.label}`} />
+      <p className="pointer-events-none absolute bottom-4 left-4 z-[500] max-w-[calc(100%-2rem)] border border-ink bg-document px-3 py-2 font-mono text-xs text-ink-2">◆ {fr.pages.home.mapLegend} · ◇ {fr.pages.home.registeredOffice}</p>
     </div>
   );
 }

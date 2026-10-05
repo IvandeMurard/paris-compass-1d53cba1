@@ -3,6 +3,7 @@ import { ExternalLink } from "lucide-react";
 
 import { fr } from "@/copy/fr";
 import { shared, type AddressFixture } from "@/data/fixture";
+import { getPublicFigureDisplay } from "@/lib/figure-display";
 import { ConfidenceMark, type Confidence } from "./ConfidenceMark";
 import { Figure, type FigureMethod } from "./Figure";
 import { JamaisBlock } from "./JamaisBlock";
@@ -71,9 +72,11 @@ function DataFigure({ figure }: { figure: FigureRow }) {
     return <div><MissingFigure label={figure.label} scale={figure.scale} reason={figure.missingReason} description={figure.counts} source={figure.source} licence={figure.licence} asOf={figure.asOf} /><DerivationDisclosure figure={figure} /></div>;
   }
   if (figure.value === null) return null;
+  const display = getPublicFigureDisplay(figure);
+  if (!display) return null;
   return (
     <div>
-      <Figure label={figure.label} value={figure.value} scale={figure.scale} description={figure.counts} source={figure.source} licence={figure.licence} asOf={figure.asOf} method={figure.method as FigureMethod} note={"note" in figure ? figure.note : undefined} />
+      <Figure label={display.label} value={display.value} scale={display.scale} description={figure.counts} source={figure.source} licence={figure.licence} asOf={figure.asOf} method={figure.method as FigureMethod} note={"note" in figure ? figure.note : undefined} />
       <DerivationDisclosure figure={figure} />
     </div>
   );
@@ -83,7 +86,7 @@ function TimelineEvent({ row }: { row: TimelineRow }) {
   if (row.withheld) {
     return (
       <li className="grid gap-3 border-t border-rule py-5">
-        <p className="font-mono text-xs text-ink-2">{formatDate(row.occurred_on)} · {row.source}</p>
+        <p className="font-mono text-xs text-ink-2">{row.occurred_on.slice(0, 4)} · {row.source}</p>
         <RetenuBlock evidence={row.evidence} />
       </li>
     );
@@ -134,7 +137,7 @@ export function AddressSheet({ address }: { address: AddressFixture }) {
   const [activeChapter, setActiveChapter] = useState<ChapterId>("verdict");
   const [selectedUnitId, setSelectedUnitId] = useState(address.unitCandidates.preselected);
   const exactCandidates = useMemo(() => address.unitCandidates.rows.filter((candidate) => candidate.address.split(" ")[0] === address.address.housenumber), [address]);
-  const bearingFigures = address.dossier.figures.filter((figure) => figure.bearing);
+  const bearingFigures = address.dossier.figures.filter((figure) => figure.bearing && figure.axis !== "footfall");
   const surroundingFigures = address.dossier.figures.filter((figure) => !figure.bearing);
   const timeline = [...address.unitTimeline.rows].sort((a, b) => a.occurred_on.localeCompare(b.occurred_on));
   const signals = [...address.nearbySignals.rows].sort((a, b) => b.published_on.localeCompare(a.published_on));

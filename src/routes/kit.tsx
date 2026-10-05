@@ -21,6 +21,7 @@ export const Route = createFileRoute("/kit")({
       { property: "og:description", content: "Les éléments d’interface de Compass, présentés avec les données réelles du jeu local." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex" },
     ],
   }),
   component: KitPage,
@@ -36,7 +37,6 @@ function KitPage() {
   const timelineRetenu = batignolles.unitTimeline.rows.filter((row) => row.withheld);
   const rotationRetenu = batignolles.streetRotation.rows.filter((row) => row.withheld);
   const density = batignolles.dossier.figures.find((figure) => figure.axis === "density");
-  const passage = batignolles.dossier.figures.find((figure) => figure.axis === "footfall");
   const noise = legendre.dossier.figures.find((figure) => figure.axis === "noise");
   const jamais = shared.jamais.rows[0];
   const jamaisAlternative = jamais?.topic === "Passage piéton"
@@ -84,27 +84,15 @@ function KitPage() {
 
             <KitSection number="03" title="Figures">
               <div className="grid gap-12 xl:grid-cols-2">
-                {density?.value !== null && density?.value !== undefined ? (
+                {density?.value !== null && density?.value !== undefined && typeof density.derivation.operands.n === "number" ? (
                   <Figure
-                    label={density.label}
-                    value={density.value}
-                    scale={density.scale}
+                    label="Tissu commercial"
+                    value={density.derivation.operands.n}
+                    scale="locaux à 400 m"
                     source={density.source}
                     licence={density.licence}
                     asOf={density.asOf}
                     method="derived"
-                  />
-                ) : null}
-                {passage?.value !== null && passage?.value !== undefined && passage.note ? (
-                  <Figure
-                    label={passage.label}
-                    value={passage.value}
-                    scale={passage.scale}
-                    source={passage.source}
-                    licence={passage.licence}
-                    asOf={passage.asOf}
-                    method="estimated"
-                    note={passage.note}
                   />
                 ) : null}
                 {noise?.value === null && noise.missingReason ? (
@@ -124,7 +112,7 @@ function KitPage() {
               <div className="space-y-5">
                 {timelineRetenu.map((row) => (
                   <div key={`${row.source}-${row.occurred_on}`}>
-                    <p className="mb-2 font-mono text-xs text-ink-2">{row.source} · {row.source_licence} · {row.occurred_on}</p>
+                    <p className="mb-2 font-mono text-xs text-ink-2">{row.source} · licence propre (non lue) · {row.occurred_on.slice(0, 4)}</p>
                     <RetenuBlock evidence={row.evidence} />
                   </div>
                 ))}

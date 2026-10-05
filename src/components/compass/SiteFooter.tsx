@@ -1,21 +1,17 @@
-import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
 
-import { fr } from "@/copy/fr";
-import { shared } from "@/data/fixture";
-
-import { FeedbackSheet } from "./FeedbackSheet";
+import { FEEDBACK_EMAIL, fr } from "@/copy/fr";
 
 const links = [
   { to: "/", label: fr.shell.home },
   { to: "/methode", label: fr.shell.method },
   { to: "/apprendre", label: fr.shell.learn },
-  { to: "/kit", label: fr.shell.kit },
 ] as const;
 
 export function SiteFooter({ variant = "full" }: { variant?: "full" | "sheet" }) {
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const sourceRows = shared.sourceFreshness.rows;
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  const feedbackHref = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(`Compass — avis — ${path}`)}`;
+  const errorHref = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(`Compass — erreur — ${path}`)}`;
 
   return (
     <footer className={`compass-site-footer ${variant === "sheet" ? "w-full max-w-[520px] bg-paper lg:border-r lg:border-ink" : "bg-paper"}`}>
@@ -32,19 +28,13 @@ export function SiteFooter({ variant = "full" }: { variant?: "full" | "sheet" })
           </nav>
         </div>
         <div className="border-t border-rule py-6">
-          <p className="mb-3 font-mono text-xs uppercase text-ink-2">{fr.shell.sources}</p>
-          <p className="font-mono text-xs leading-5 text-ink-2">
-            {sourceRows.map((row, index) => (
-              <span key={row.source}>{index > 0 ? " · " : ""}{row.label} — {fr.shell.sourceDate} {row.source_as_of}</span>
-            ))}
-          </p>
+          <Link to="/methode" hash="sources" className="inline-flex min-h-11 items-center font-mono text-xs text-ink-2 underline underline-offset-4">{fr.shell.sourcesSummary}</Link>
         </div>
         <div className="flex min-h-16 flex-wrap items-center gap-x-6 gap-y-1 border-t border-ink py-2">
-          <button type="button" onClick={() => setFeedbackOpen(true)} className="inline-flex min-h-11 items-center text-sm underline decoration-1 underline-offset-4">{fr.shell.feedback}</button>
-          <a href="https://github.com/IvandeMurard/paris-compass/issues" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center text-sm underline decoration-1 underline-offset-4">{fr.shell.reportIssue}</a>
+          <a href={feedbackHref} className="inline-flex min-h-11 items-center text-sm underline decoration-1 underline-offset-4">{fr.shell.feedback}</a>
+          <a href={errorHref} className="inline-flex min-h-11 items-center text-sm underline decoration-1 underline-offset-4">{fr.shell.reportIssue}</a>
         </div>
       </div>
-      <FeedbackSheet open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
     </footer>
   );
 }

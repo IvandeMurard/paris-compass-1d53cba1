@@ -3,7 +3,7 @@ import { SourceLine, type SourceLineProps } from "./SourceLine";
 
 type MissingFigureProps = SourceLineProps & {
   label: string;
-  scale: string;
+  scale?: string | undefined;
   reason: string;
   description?: string | undefined;
 };
@@ -14,7 +14,7 @@ export function MissingFigure({ label, scale, reason, source, licence, asOf, des
       <figcaption className="text-sm font-semibold text-ink-2">{label}</figcaption>
       <div className="mt-4 flex items-end justify-between gap-4 border-b border-rule pb-4">
         <span className="font-display text-4xl leading-none text-ink">{fr.figure.missing}</span>
-        <span className="pb-1 font-mono text-xs text-ink-2">{scale}</span>
+        {scale && scale !== "0-100" ? <span className="pb-1 font-mono text-xs text-ink-2">{scale}</span> : null}
       </div>
       {description ? <p className="mt-3 text-sm leading-6 text-ink-2">{description}</p> : null}
       <p className="mt-3 font-display text-base leading-6 text-ink-2">{reason}</p>

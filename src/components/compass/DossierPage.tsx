@@ -3,6 +3,7 @@ import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fr } from "@/copy/fr";
 import type { AddressFixture } from "@/data/fixture";
+import { getPublicFigureDisplay } from "@/lib/figure-display";
 import { ConfidenceMark, type Confidence } from "./ConfidenceMark";
 import type { FigureMethod } from "./Figure";
 import { RetenuBlock } from "./RetenuBlock";
@@ -26,14 +27,16 @@ function SectionTitle({ number, children }: { number: string; children: React.Re
 
 function DossierFigure({ figure }: { figure: FigureRow }) {
   const missing = figure.value === null;
+  const display = missing ? undefined : getPublicFigureDisplay(figure);
+  if (!missing && !display) return null;
   return (
     <article className="dossier-keep border-t border-rule pt-4">
-      <p className="text-sm font-semibold text-ink-2">{figure.label}</p>
+      <p className="text-sm font-semibold text-ink-2">{display?.label ?? figure.label}</p>
       <div className="mt-3 flex min-w-0 items-end justify-between gap-3">
         <p className="min-w-0 break-words font-display text-4xl leading-none text-ink">
-          {missing ? fr.figure.missing : figure.value}
+          {missing ? fr.figure.missing : display?.value}
         </p>
-        <p className="shrink-0 font-mono text-xs text-ink-2">{figure.scale}</p>
+        {display?.scale ? <p className="shrink-0 font-mono text-xs text-ink-2">{display.scale}</p> : null}
       </div>
       {figure.counts ? <p className="mt-3 text-sm leading-6 text-ink-2">{figure.counts}</p> : null}
       {missing && "missingReason" in figure ? <p className="mt-3 text-sm leading-6 text-ink-2">{figure.missingReason}</p> : null}
@@ -47,7 +50,7 @@ function TimelineItem({ row }: { row: TimelineRow }) {
   if (row.withheld) {
     return (
       <li className="dossier-keep border-t border-rule py-5">
-        <p className="mb-3 font-mono text-xs text-ink-2">{formatDate(`${row.occurred_on}T12:00:00`)} · {row.source}</p>
+         <p className="mb-3 font-mono text-xs text-ink-2">{row.occurred_on.slice(0, 4)} · {row.source}</p>
         <RetenuBlock evidence={row.evidence} />
       </li>
     );
@@ -99,7 +102,7 @@ export function DossierPage({ address }: { address: AddressFixture }) {
           <p className="max-w-3xl font-display text-2xl leading-8 text-ink sm:text-3xl sm:leading-10">{dossier.verdict.sentence}</p>
           <div className="mt-10">
             <h3 className="mb-6 font-mono text-xs uppercase text-ink-2">{t.findings}</h3>
-            <div className="grid gap-8 sm:grid-cols-2">{dossier.figures.map((figure) => <DossierFigure key={figure.axis} figure={figure} />)}</div>
+             <div className="grid gap-8 sm:grid-cols-2">{dossier.figures.filter((figure) => figure.axis !== "footfall").map((figure) => <DossierFigure key={figure.axis} figure={figure} />)}</div>
           </div>
         </section>
 
