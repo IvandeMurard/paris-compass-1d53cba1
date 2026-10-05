@@ -87,7 +87,7 @@ function KitPage() {
               <div className="grid gap-12 xl:grid-cols-2">
                 {density?.value !== null && density?.value !== undefined ? (
                   <Figure
-                    label={density.label}
+                    label="Tissu commercial"
                     value={density.derivation.operands.n}
                     scale="locaux à 400 m"
                     source={density.source}
