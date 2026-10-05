@@ -85,7 +85,7 @@ function KitPage() {
 
             <KitSection number="03" title="Figures">
               <div className="grid gap-12 xl:grid-cols-2">
-                {density?.value !== null && density?.value !== undefined ? (
+                {density?.value !== null && density?.value !== undefined && typeof density.derivation.operands.n === "number" ? (
                   <Figure
                     label="Tissu commercial"
                     value={density.derivation.operands.n}

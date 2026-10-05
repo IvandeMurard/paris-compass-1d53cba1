@@ -90,7 +90,7 @@ export function MethodPage() {
               <article key={figure.axis} className="py-8">
                 <div className="grid gap-3 sm:grid-cols-[44px_minmax(0,1fr)_auto] sm:items-baseline">
                   <span className="font-mono text-xs text-ink-2">{String(index + 1).padStart(2, "0")}</span>
-                   <h3 className="font-display text-3xl text-ink">{fr.method.formulaNames[figure.axis]}</h3>
+                   <h3 className="font-display text-3xl text-ink">{fr.method.formulaNames[figure.axis as keyof typeof fr.method.formulaNames]}</h3>
                 </div>
                 <dl className="mt-6 grid gap-6 lg:grid-cols-2">
                   <div><dt className="font-mono text-xs text-ink-2">{fr.method.formula}</dt><dd className="mt-2 break-words font-mono text-sm leading-6 text-ink">{figure.derivation.formula}</dd></div>
@@ -110,7 +110,7 @@ export function MethodPage() {
                 <div><p className="font-mono text-xs text-ink-2">{row.source}</p><h3 className="mt-2 font-display text-2xl leading-7 text-ink">{row.label}</h3></div>
                 <div>
                   <p className="font-mono text-xs text-ink-2">
-                    {fr.method.sourceCadence} · {fr.method.cadences[row.cadence]}
+                    {fr.method.sourceCadence} · {fr.method.cadences[row.cadence as keyof typeof fr.method.cadences]}
                     {row.source === "filosofi" ? null : <> · {fr.method.sourceAsOf} · {row.source_as_of}</>}
                   </p>
                   {row.source === "filosofi" ? <div className="mt-3"><ConfidenceMark level="indetermine" /></div> : null}
