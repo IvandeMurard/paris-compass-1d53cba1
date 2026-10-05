@@ -1,4 +1,4 @@
-export const FEEDBACK_EMAIL = "ivandemurard@gmail.com";
+export const FEEDBACK_EMAIL = "contact@paris-compass.fr";
 
 export const fr = {
   shell: {

@@ -36,7 +36,7 @@ function DossierFigure({ figure }: { figure: FigureRow }) {
         <p className="min-w-0 break-words font-display text-4xl leading-none text-ink">
           {missing ? fr.figure.missing : display?.value}
         </p>
-        <p className="shrink-0 font-mono text-xs text-ink-2">{display?.scale ?? figure.scale}</p>
+        {display?.scale ? <p className="shrink-0 font-mono text-xs text-ink-2">{display.scale}</p> : null}
       </div>
       {figure.counts ? <p className="mt-3 text-sm leading-6 text-ink-2">{figure.counts}</p> : null}
       {missing && "missingReason" in figure ? <p className="mt-3 text-sm leading-6 text-ink-2">{figure.missingReason}</p> : null}
