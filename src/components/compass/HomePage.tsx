@@ -21,7 +21,11 @@ type SignalRow = (typeof addresses)[AddressSlug]["nearbySignals"]["rows"][number
 type SignalGroup = { key: string; label: string; rows: SignalRow[]; latest: string };
 
 function sixMonthsAgo() {
-  const threshold = new Date();
+  const latestFixtureDate = addressEntries.reduce((latest, [, address]) => {
+    const latestForAddress = address.nearbySignals.rows.reduce((date, row) => row.published_on > date ? row.published_on : date, "");
+    return latestForAddress > latest ? latestForAddress : latest;
+  }, "");
+  const threshold = new Date(`${latestFixtureDate}T12:00:00`);
   threshold.setMonth(threshold.getMonth() - 6);
   return threshold.toISOString().slice(0, 10);
 }
