@@ -1,14 +1,14 @@
+export const FEEDBACK_EMAIL = "contact@paris-compass.fr";
+
 export const fr = {
   shell: {
     brand: "Compass",
     home: "Accueil",
     method: "Méthode",
     learn: "Apprendre",
-    kit: "Kit",
     navigation: "Navigation principale",
     footerNavigation: "Navigation du pied de page",
-    sources: "Sources",
-    sourceDate: "données au",
+    sourcesSummary: "Sources publiques, chacune datée",
     reportIssue: "Signaler une erreur",
     feedback: "Donner son avis",
     footerStatement: "Lire le contexte d’une adresse commerciale parisienne à partir de données publiques.",
@@ -27,8 +27,8 @@ export const fr = {
       openAddress: "Lire cette adresse",
       recent: "Adresses récentes",
       recentKicker: "Reprendre une lecture",
-      signalsKicker: "Autour de l’adresse de référence",
-      signalsTitle: "Signaux publiés récemment",
+      signalsKicker: "BODACC",
+      signalsTitle: "Signaux publiés autour de",
       signalsIntro: "Cessions et procédures collectives publiées au BODACC dans un rayon de 400 m.",
       sale: "Cession",
       collective: "Procédure collective",
@@ -36,6 +36,8 @@ export const fr = {
       registeredOffice: "Siège social : ce n’est pas nécessairement une boutique.",
       mapLegend: "signal BODACC localisé",
       openNotice: "Voir l’annonce",
+      showOtherGroups: "Voir les autres adresses",
+      latestOn: "dernière le",
     },
     method: { eyebrow: "Compass · Méthode", title: "Comment Compass lit-il un emplacement ?", text: "Les principes, les formules, les sources et leur fiabilité seront présentés ici." },
     learn: { eyebrow: "Compass · Apprendre", title: "Apprendre à lire une adresse commerciale", text: "Les guides, les questions fréquentes et le glossaire seront présentés ici." },
@@ -141,7 +143,6 @@ export const fr = {
       sources: "Sources",
       reliability: "Fiabilité",
       retained: "Ce qui est retenu, et pourquoi",
-      progress: "Avancement",
     },
     leads: {
       principles: "Compass sépare les faits, les calculs et les limites pour laisser chaque commerce définir ses propres priorités.",
@@ -149,7 +150,6 @@ export const fr = {
       sources: "La fraîcheur d’une donnée dépend du calendrier de sa source, pas de la date à laquelle Compass la relit.",
       reliability: "La fiabilité décrit le lien entre une source et un local ; elle ne récompense jamais un résultat favorable.",
       retained: "Compass retient les calculs fondés sur 2017 et 2020 tant que la licence de ces relevés n’est pas lue.",
-      progress: "Les prochaines étapes seront publiées ici lorsqu’elles pourront être décrites sans promesse spéculative.",
     },
     principleItems: [
       ["Pas de note unique", "Les axes restent séparés : une boulangerie, un café et un studio de yoga ne cherchent pas la même rue."],
@@ -165,6 +165,24 @@ export const fr = {
     referenceAddress: "Exemple travaillé",
     sourceCadence: "Cadence",
     sourceAsOf: "Données au",
+    sourceNotLoaded: "non chargé",
+    cadences: {
+      continuous: "chaque jour ouvré",
+      weekly: "hebdomadaire",
+      monthly: "mensuelle",
+      semiannual: "semestrielle",
+      annual: "annuelle",
+      triennial: "environ tous les trois ans",
+      rare: "rare, sans calendrier publié",
+    },
+    formulaNames: {
+      density: "tissu",
+      footfall: "indice desserte × densité",
+      rail: "desserte",
+      services: "services",
+      alimentaire: "alimentaire",
+      noise: "bruit",
+    },
     confidenceDefinitions: {
       etabli: "La source nomme le local.",
       corrobore: "Deux sources concordent.",
@@ -174,7 +192,6 @@ export const fr = {
     vintage: "Millésime",
     licence: "Licence",
     asOf: "Données au",
-    progressValue: "à venir",
   },
   addressSheet: {
     kicker: "Compass · Contexte",

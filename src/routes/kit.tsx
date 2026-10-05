@@ -21,6 +21,7 @@ export const Route = createFileRoute("/kit")({
       { property: "og:description", content: "Les éléments d’interface de Compass, présentés avec les données réelles du jeu local." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex" },
     ],
   }),
   component: KitPage,
@@ -87,8 +88,8 @@ function KitPage() {
                 {density?.value !== null && density?.value !== undefined ? (
                   <Figure
                     label={density.label}
-                    value={density.value}
-                    scale={density.scale}
+                    value={density.derivation.operands.n}
+                    scale="locaux à 400 m"
                     source={density.source}
                     licence={density.licence}
                     asOf={density.asOf}
@@ -97,9 +98,8 @@ function KitPage() {
                 ) : null}
                 {passage?.value !== null && passage?.value !== undefined && passage.note ? (
                   <Figure
-                    label={passage.label}
+                    label="Indice desserte × densité"
                     value={passage.value}
-                    scale={passage.scale}
                     source={passage.source}
                     licence={passage.licence}
                     asOf={passage.asOf}
@@ -124,7 +124,7 @@ function KitPage() {
               <div className="space-y-5">
                 {timelineRetenu.map((row) => (
                   <div key={`${row.source}-${row.occurred_on}`}>
-                    <p className="mb-2 font-mono text-xs text-ink-2">{row.source} · {row.source_licence} · {row.occurred_on}</p>
+                    <p className="mb-2 font-mono text-xs text-ink-2">{row.source} · licence propre (non lue) · {row.occurred_on.slice(0, 4)}</p>
                     <RetenuBlock evidence={row.evidence} />
                   </div>
                 ))}
