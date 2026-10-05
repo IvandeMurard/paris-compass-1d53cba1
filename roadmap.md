@@ -25,4 +25,4 @@
 - [x] Update retained dates and evidence.
 - [x] Rework Home recents and grouped six-month signal feed.
 - [x] Replace feedback actions, remove Kit navigation, and simplify footer sources.
-- [ ] Verify requested pages and constraints.
+- [x] Verify requested pages and constraints.
