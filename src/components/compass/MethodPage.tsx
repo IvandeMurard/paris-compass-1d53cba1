@@ -91,9 +91,12 @@ export function MethodPage() {
                 <div className="grid gap-3 sm:grid-cols-[44px_minmax(0,1fr)_auto] sm:items-baseline">
                   <span className="font-mono text-xs text-ink-2">{String(index + 1).padStart(2, "0")}</span>
                    <h3 className="font-display text-3xl text-ink">{fr.method.formulaNames[figure.axis as keyof typeof fr.method.formulaNames]}</h3>
+                   {figure.value !== null ? <span className="font-mono text-xs text-ink-2">{figure.value} / 100</span> : null}
                 </div>
+                 {figure.axis === "footfall" && "note" in figure && figure.note ? <p className="mt-5 border-l-2 border-ink pl-4 text-sm leading-6 text-ink-2">{figure.note}</p> : null}
                 <dl className="mt-6 grid gap-6 lg:grid-cols-2">
                   <div><dt className="font-mono text-xs text-ink-2">{fr.method.formula}</dt><dd className="mt-2 break-words font-mono text-sm leading-6 text-ink">{figure.derivation.formula}</dd></div>
+                   <div><dt className="font-mono text-xs text-ink-2">{fr.addressSheet.calculation}</dt><dd className="mt-2 font-mono text-sm text-ink">{fr.figure.methods[figure.method as keyof typeof fr.figure.methods]}</dd></div>
                   <div><dt className="font-mono text-xs text-ink-2">{fr.method.radius}</dt><dd className="mt-2 font-mono text-sm text-ink">{String(figure.derivation.radiusM)} m</dd></div>
                   <div><dt className="mb-2 font-mono text-xs text-ink-2">{fr.method.constants}</dt><dd><KeyValues values={figure.derivation.constants} /></dd></div>
                   <div><dt className="mb-2 font-mono text-xs text-ink-2">{fr.method.operands}</dt><dd><KeyValues values={figure.derivation.operands} /></dd></div>

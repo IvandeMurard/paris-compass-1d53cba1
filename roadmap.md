@@ -20,9 +20,9 @@
 
 # Phase 1 — Fix list
 
-- [ ] Sanitize Méthode sources and formulas.
-- [ ] Replace screen indexes with raw counts or distances.
-- [ ] Update retained dates and evidence.
-- [ ] Rework Home recents and grouped six-month signal feed.
-- [ ] Replace feedback actions, remove Kit navigation, and simplify footer sources.
+- [x] Sanitize Méthode sources and formulas.
+- [x] Replace screen indexes with raw counts or distances.
+- [x] Update retained dates and evidence.
+- [x] Rework Home recents and grouped six-month signal feed.
+- [x] Replace feedback actions, remove Kit navigation, and simplify footer sources.
 - [ ] Verify requested pages and constraints.

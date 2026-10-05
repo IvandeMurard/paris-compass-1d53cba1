@@ -37,7 +37,6 @@ function KitPage() {
   const timelineRetenu = batignolles.unitTimeline.rows.filter((row) => row.withheld);
   const rotationRetenu = batignolles.streetRotation.rows.filter((row) => row.withheld);
   const density = batignolles.dossier.figures.find((figure) => figure.axis === "density");
-  const passage = batignolles.dossier.figures.find((figure) => figure.axis === "footfall");
   const noise = legendre.dossier.figures.find((figure) => figure.axis === "noise");
   const jamais = shared.jamais.rows[0];
   const jamaisAlternative = jamais?.topic === "Passage piéton"
@@ -94,17 +93,6 @@ function KitPage() {
                     licence={density.licence}
                     asOf={density.asOf}
                     method="derived"
-                  />
-                ) : null}
-                {passage?.value !== null && passage?.value !== undefined && passage.note ? (
-                  <Figure
-                    label="Indice desserte × densité"
-                    value={passage.value}
-                    source={passage.source}
-                    licence={passage.licence}
-                    asOf={passage.asOf}
-                    method="estimated"
-                    note={passage.note}
                   />
                 ) : null}
                 {noise?.value === null && noise.missingReason ? (
